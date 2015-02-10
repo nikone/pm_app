@@ -6,7 +6,9 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body ng-app="startup">
+  <div class="row">
+    <ui-view></ui-view>
+  </div>
 </body>
 </html>
