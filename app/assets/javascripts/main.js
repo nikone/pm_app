@@ -1,4 +1,4 @@
-angular.module('startup', ['ui.router', 'templates'])
+angular.module('startup', ['ui.router', 'templates', 'Devise'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
