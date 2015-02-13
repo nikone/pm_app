@@ -1,5 +1,9 @@
 class ProjectsController < ApplicationController
   def index
-    respond_with Project.all
+    @projects = Project.all
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 end

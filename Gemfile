@@ -8,7 +8,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'angular-rails-templates'
 gem 'devise'
 gem 'angular_rails_csrf'
-gem 'active_model_serializers', '0.8'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
