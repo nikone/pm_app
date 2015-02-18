@@ -16,6 +16,21 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update
+    project = Project.find(params[:id])
+    if project.update(project_params)
+      render json: project, status: 200, location: [project] 
+    else
+      render json: { errors: project.errors }, status: 422
+    end
+  end
+
+  def delete
+    project = Project.find(params[:id]) 
+    project.destroy
+    head 204
+  end
+
   private
   def project_params
     params.require(:project).permit(:title, :description)
