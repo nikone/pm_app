@@ -92,9 +92,8 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'renders json representation for the updated project' do
-        binding.pry
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:project].title).to eq("new title")
+        expect(project_response[:title]).to eq("new title")
       end
 
       it 'returns a 200 HTTP status' do
