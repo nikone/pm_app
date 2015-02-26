@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     project = Project.find(params[:id]) 
     project.destroy
     head 204

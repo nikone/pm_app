@@ -125,7 +125,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'DELETE #destroy' do
     before(:each) do
       @project = create(:project)
-      delete :destroy, { id: @product.id }
+      delete :destroy, { id: @project.id }
     end
 
     it 'returns a 204 HTTP status' do
