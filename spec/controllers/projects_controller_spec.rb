@@ -82,47 +82,55 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'PUT/PATCH #update' do
-    before (:each) do
+    before(:each) do
       @project = create(:project)
     end
 
-    context 'when is successfully updated' do
-      before (:each) do
-        patch :update, { id: @project.id, project: { title: "new title" } }
+    context "when is successfully updated" do
+      before(:each) do
+        patch :update, { id: @project.id, project: { title: "An expensive project" } }
       end
 
-      it 'renders json representation for the updated project' do
+      it "renders the json representation for the updated user" do
         project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:title]).to eq("new title")
+        expect(project_response[:title]).to eql "An expensive project"
       end
 
       it 'returns a 200 HTTP status' do
-        expect(response.status).to eq(200)
+        expect(response).to be_success
       end
     end
 
-    context 'when is not created' do
+    context "when is not updated" do
       before(:each) do
         patch :update, { id: @project.id, project: { title: "" } }
       end
-    end
 
-    it 'renders an errors json' do
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response).to have_key(:errors)
-    end
+      it "renders an errors json" do
+        project_response = JSON.parse(response.body, symbolize_names: true)
+        expect(project_response).to have_key(:errors)
+      end
 
-    it 'renders the json errors on why the project could not be created' do
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:errors][:title]).to include "is required"
-    end
+      it "renders the json errors on whye the user could not be created" do
+        project_response = JSON.parse(response.body, symbolize_names: true)
+        expect(project_response[:errors][:title]).to include "can't be blank"
+      end
 
-    it 'returns a 422 HTTP status' do
-      expect(response.status).to eq(422)
+      it 'returns a 422 HTTP status' do
+        expect(response.status).to eq(422)
+      end
     end
   end
 
   describe 'DELETE #destroy' do
+    before(:each) do
+      @project = create(:project)
+      delete :destroy, { id: @product.id }
+    end
+
+    it 'returns a 204 HTTP status' do
+      expect(response.status).to eq(204)
+    end
   end
 end
 
