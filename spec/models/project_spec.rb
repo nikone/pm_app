@@ -4,4 +4,5 @@ RSpec.describe Project, type: :model do
   it { expect(subject).to validate_presence_of(:title) }
 
   it { expect(subject).to have_many(:boards) }
+  it { expect(subject).to belong_to(:company) }
 end
