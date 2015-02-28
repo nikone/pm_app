@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
+  has_and_belongs_to_many :projects
   has_many :created_tasks, class_name: 'Task', foreign_key: 'creator_id'
   has_many :assigned_tasks, class_name: 'Task', foreign_key: 'assignee_id'
 end
