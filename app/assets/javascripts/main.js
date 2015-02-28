@@ -29,6 +29,11 @@ function($stateProvider, $urlRouterProvider) {
           $state.go('home');
         })
       }]
+    })
+    .state('projects', {
+      url: '/projects',
+      templateUrl: 'projects/_index.html',
+      controller: 'ProjectsCtrl'
     });
 
   $urlRouterProvider.otherwise('home');
