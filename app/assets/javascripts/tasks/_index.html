@@ -1,1 +1,9 @@
 <h1>Tasks Page</h1>
+
+<div ng-repeat="board in boards">
+  <p>Title: {{board.title}}</p>
+  <p>Tasks:</p>
+  <div ng-repeat="task in board.tasks">
+    <p>{{ task.title }}</p>
+  </div>
+</div>

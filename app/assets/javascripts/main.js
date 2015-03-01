@@ -36,7 +36,7 @@ function($stateProvider, $urlRouterProvider) {
       controller: 'ProjectsCtrl'
     })
     .state('tasks', {
-      url: '/tasks',
+      url: '/projects/:projectId/tasks',
       templateUrl: 'tasks/_index.html',
       controller: 'TasksCtrl'
     });
