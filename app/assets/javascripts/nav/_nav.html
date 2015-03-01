@@ -1,11 +1,22 @@
-<div ng-controller="NavCtrl">
-  <ul>
-    <li><a href="#/home">Home</a></li>
-    <li><a href="#/projects">Projects</a></li>
-    <li><a href="#/tasks">Tasks</a></li>
-    <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
-    <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
-    <li ng-show="signedIn()"><a href="#/">{{ user.username }}</a></li>
-    <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
-  </ul>
-</div>
+    <div id="first_logo_helper"></div>
+        <div id="logo"><p width="185px" class="inline">Logo</p></div>
+    <div id="second_logo_helper"></div>
+
+    <div id="rooms" class="inline">
+        <ul>
+            <li><a href="/room/"><i class="fa fa-bars"></i>   <span class="room-name">Projects</span> <span class="unread-messages-orange">4</span></a></li>
+            <hr class="fade" />
+            <li><i class="fa fa-list"></i>   <span class="room-name">Tasks</span> <span class="unread-messages-orange">2</span></li>
+            <hr class="fade" />
+            <li><i class="fa fa-bug"></i>   <span class="room-name">Bugs</span></li>
+            <hr class="fade" />
+            <li><i class="fa fa-comment-o"></i>   <span class="room-name">ZenChat</span> <span class="unread-messages-orange">16</span></li>
+            <hr class="fade" />
+            <li><i class="fa fa-clock-o"></i>   <span class="room-name">Time Tracking</span></li>
+            <hr class="fade" />
+            <li><i class="fa fa-lightbulb-o"></i>   <span class="room-name">Help!</span></li>
+            <hr class="fade" />
+            <li><i class="fa fa-circle-o"></i>   <span class="room-name">Kudos</span> <span class="unread-messages-orange">5</span></li>
+            <hr class="fade" />
+        </ul>
+    </div>
