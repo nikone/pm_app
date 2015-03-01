@@ -34,6 +34,11 @@ function($stateProvider, $urlRouterProvider) {
       url: '/projects',
       templateUrl: 'projects/_index.html',
       controller: 'ProjectsCtrl'
+    })
+    .state('tasks', {
+      url: '/tasks',
+      templateUrl: 'tasks/_index.html',
+      controller: 'TasksCtrl'
     });
 
   $urlRouterProvider.otherwise('home');
