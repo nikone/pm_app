@@ -200,7 +200,7 @@
                             <input id="task-checked-13" class="task-completed-checkbox" type="checkbox" />
                             <label for="task-checked-13"></label>
                             <span class="tasks-username"> {{ task.title }}</span>
-                            <img src="/assets/users/user-4.jpg" style="width:30px">
+                            <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">
                             <span class="task-notificaton">3</span>
                             <span class="task-due-date">29 Nov</span>
                         </li>
