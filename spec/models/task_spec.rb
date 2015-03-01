@@ -7,4 +7,5 @@ RSpec.describe Task, type: :model do
 
   it { expect(subject).to belong_to(:creator) }
   it { expect(subject).to belong_to(:assignee) }
+  it { expect(subject).to belong_to(:board) }
 end
