@@ -372,7 +372,7 @@ ul {
 }
 
 .left-list {
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
 }
 
 .left-list ul {
@@ -530,5 +530,21 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
   cursor: pointer;
   
 }
+
+#create-new-task {
+  padding: 15px 0;
+  text-align: center;
+  /*border-bottom: 1px solid #d6d6d6;*/
+}
+
+#create-new-task .add-text {
+  padding-left: 10px;
+}
+
+#create-new-task:hover {
+  background-color: #F4F4F4;
+  cursor: pointer;
+}
+
 
 

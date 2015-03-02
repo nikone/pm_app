@@ -20,5 +20,11 @@ function($scope, $stateParams, Board, Task){
     taskPromise.then(function (task) {
       $scope.activeTask = task;
     });
-  }
+  };
+
+  // Show new task modal logic
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 }])

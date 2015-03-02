@@ -16,6 +16,15 @@
       </div>
     </div>
     <div id="main-left-list">
+
+    <!-- New Task Modal -->
+    <div>
+      <modal-dialog show='modalShown' width='500px' height='60%'>
+        <p>Modal Content Goes here<p>
+      </modal-dialog>
+    </div>
+    <!-- New Task Modal End -->
+
       <!-- Backlog pad -->
       <div class="search-tasks">
         <i class="fa fa-search"></i>
@@ -180,28 +189,31 @@
 
       <!-- In progress pad -->
       <div ng-repeat="board in boards">
-      <div class="left-list-header">
-        <div class="header-icons">
-          <div class="list-name">{{board.title}} <i class="fa fa-caret-down"></i></div>
+        <div class="left-list-header">
+          <div class="header-icons">
+            <div class="list-name">{{board.title}} <i class="fa fa-caret-down"></i></div>
+          </div>
+          <div class="header-nav">
+            <span class="new-task">View All (12)</span>
+          </div>
         </div>
-        <div class="header-nav">
-          <span class="new-task">View All (12)</span>
+        <div class="clearfix"></div>
+        <hr class="fade-black" />
+        <div class="left-list">
+          <ul ng-repeat="task in board.tasks">
+            <li ng-click="changeActiveTask(task.id)">
+              <input id="task-checked-13" class="task-completed-checkbox" type="checkbox" />
+              <label for="task-checked-13"></label>
+              <span class="tasks-username"> {{ task.title }}</span>
+              <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">
+              <span class="task-notificaton">3</span>
+              <span class="task-due-date">29 Nov</span>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr class="fade-black" />
-      <div class="left-list">
-        <ul ng-repeat="task in board.tasks">
-          <li ng-click="changeActiveTask(task.id)">
-            <input id="task-checked-13" class="task-completed-checkbox" type="checkbox" />
-            <label for="task-checked-13"></label>
-            <span class="tasks-username"> {{ task.title }}</span>
-            <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">
-            <span class="task-notificaton">3</span>
-            <span class="task-due-date">29 Nov</span>
-          </li>
-        </ul>
-      </div>
+        <div id="create-new-task" ng-click='toggleModal()'>
+          <i class="fa fa-plus-square"></i><span class="add-text">Add New</span>
+        </div>
       </div>
       <!-- In progress pad end -->
     </div>
