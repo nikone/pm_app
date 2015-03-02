@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :boards, only: [:index]
   end
 
-  #resources :boards
+  resources :tasks, only: [:show]
 end
