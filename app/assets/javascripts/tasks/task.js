@@ -10,5 +10,13 @@ angular.module('startup')
     });
   };
 
+  Task.prototype.create = function() {
+    var task = this;
+    return $http.post('/tasks', task).then(function(response) {
+      task.id = response.data.id;
+      return task;
+    });
+  }
+
   return Task;
 }]);

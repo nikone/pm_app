@@ -20,7 +20,10 @@
     <!-- New Task Modal -->
     <div>
       <modal-dialog show='modalShown' width='500px' height='60%'>
-        <p>Modal Content Goes here<p>
+        <form ng-submit="addTask()">
+          <input type="text" ng-model="newTask.title"></input>
+          <button type="submit">Post</button>
+        </form>
       </modal-dialog>
     </div>
     <!-- New Task Modal End -->
@@ -211,7 +214,7 @@
             </li>
           </ul>
         </div>
-        <div id="create-new-task" ng-click='toggleModal()'>
+        <div id="create-new-task" ng-click='toggleNewTaskModal(board.id)'>
           <i class="fa fa-plus-square"></i><span class="add-text">Add New</span>
         </div>
       </div>

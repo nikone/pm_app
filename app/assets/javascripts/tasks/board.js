@@ -10,5 +10,14 @@ angular.module('startup')
     });
   };
 
+  Board.findIndexById = function(boards, id) {
+    var arrLength = Object.keys(boards).length;
+    for (var i = 0; i < arrLength; i++) {
+      if (boards[i].id == id) {
+        return i;
+      };
+    };
+  };
+
   return Board;
 }]);
