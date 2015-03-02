@@ -9,8 +9,9 @@ RSpec.describe TasksController, type: :controller do
 
     it 'returns task object' do
       task_response = JSON.parse(response.body, symbolize_names: true)
-      expect(task_response[:title]).to eq(@task.title)
       expect(task_response[:id]).to eq(@task.id)
+      expect(task_response[:title]).to eq(@task.title)
+      expect(task_response[:description]).to eq(@task.description)
     end
 
     it 'returns a 200 HTTP status' do
