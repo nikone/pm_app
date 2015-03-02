@@ -51,7 +51,9 @@ function($scope, $stateParams, Board, Task){
   $scope.modalShown = false;
   $scope.activeBoard = {};
   $scope.toggleNewTaskModal = function(board_id) {
-    $scope.activeBoard.id = board_id;
+    if (board_id) {
+      $scope.activeBoard.id = board_id;
+    }
     $scope.modalShown = !$scope.modalShown;
   };
 }])

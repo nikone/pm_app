@@ -546,5 +546,39 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
   cursor: pointer;
 }
 
+#new-task-form {
+  padding: 20px 30px;
+}
+#new-task-form input, #new-task-form textarea {
+  padding: 15px;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  /*font-family: montserrat;*/
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+.ng-modal-close-task {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+
+.ng-modal-header {
+  padding: 10px;
+  text-align: center;
+  background-color: #d25428;
+  color: white;
+  margin 20px;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px 5px;
+  border-radius: 5px 5px;
+}
 
 
