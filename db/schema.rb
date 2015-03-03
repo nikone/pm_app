@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302113157) do
+ActiveRecord::Schema.define(version: 20150303102818) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -41,6 +41,22 @@ ActiveRecord::Schema.define(version: 20150302113157) do
 
   add_index "projects_users", ["project_id"], name: "index_projects_users_on_project_id", using: :btree
   add_index "projects_users", ["user_id"], name: "index_projects_users_on_user_id", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id",     limit: 4
+    t.integer  "task_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["task_id"], name: "index_taggings_on_task_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -74,4 +90,6 @@ ActiveRecord::Schema.define(version: 20150302113157) do
 
   add_foreign_key "projects_users", "projects"
   add_foreign_key "projects_users", "users"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "taggings", "tasks"
 end
