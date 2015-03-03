@@ -4,5 +4,11 @@ FactoryGirl.define do
     description { Faker::Lorem.sentences(4).join(" ") }
     association :creator, factory: :user
     association :assignee, factory: :user
+
+    factory :task_with_tags do
+      after(:create) do |task|
+        2.times { task.tags << create(:tag) }
+      end
+    end
   end
 end

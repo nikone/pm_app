@@ -12,7 +12,8 @@ RSpec.describe BoardsController, type: :controller do
       expect(board_response.size).to eq(4)
 
       board_response.each do |board|
-        expect(board[:tasks].size).to eq(4)        
+        expect(board[:tasks].size).to eq(4)
+        expect(board[:tasks].first).to include(:tags)        
       end
     end
 
