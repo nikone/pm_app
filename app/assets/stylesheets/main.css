@@ -699,6 +699,9 @@ body {
   vertical-align: middle;
   width: 25px;
   cursor: pointer;
+  -moz-border-radius: 5px 5px;
+  -webkit-border-radius: 5px 5px;
+  border-radius: 5px 5px;
 }
 
 .checkbox-remember + label:before {
