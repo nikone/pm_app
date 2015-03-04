@@ -12,14 +12,14 @@ function($stateProvider, $urlRouterProvider) {
       $state.go('login');
     });
     return defer.promise;
-  }
+  };
 
   $stateProvider
     .state('home', {
       url: '/home',
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
-      resolve: { auth }
+      resolve: { auth: auth }
     })
     .state('login', {
       url: '/login',
@@ -40,13 +40,13 @@ function($stateProvider, $urlRouterProvider) {
       url: '/projects',
       templateUrl: 'projects/_index.html',
       controller: 'ProjectsCtrl',
-      resolve: { auth }
+      resolve: { auth: auth }
     })
     .state('tasks', {
       url: '/projects/:projectId/tasks',
       templateUrl: 'tasks/_index.html',
       controller: 'TasksCtrl',
-      resolve: { auth }
+      resolve: { auth: auth }
     });
 
   $urlRouterProvider.otherwise('home');
