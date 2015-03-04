@@ -1,16 +1,25 @@
-<div class="page-header">
-  <h1>Register</h1>
-</div>
+<div id="login-form-wraper">
+<div class="login-form">
+  <div class="login-form-header">
+    <h2>Make a new Account</h2>
+  </div>
 
-<form ng-submit="register()">
-  <div class="input-group">
-    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+  <div class="colored-box grey">
+    <form ng-submit="login()">
+      <div class="input-group">
+        <input class="form-control-login" type="email" class="form-control" placeholder="Email" ng-model="user.email">
+      </div>
+      <div class="input-group">
+        <input class="form-control-login" type="text" class="form-control" placeholder="Username" ng-model="user.username">
+      </div>
+      <div class="input-group">
+        <input class="form-control-login" type="password" class="form-control" placeholder="Password" ng-model="user.password">
+      </div>
+      <input type="submit" class="btn btn-default sign-in-btn" value="Sign Up"> 
+    </form>
   </div>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Username" ng-model="user.username">
-  </div>
-  <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-  </div>
-  <input type="submit" class="btn btn-default" value="Register">
-</form>
+</div>
+<div class="sign-up-msg">
+  Already have an account? <a href="#/login">Sign In</a>
+</div>
+</div>
