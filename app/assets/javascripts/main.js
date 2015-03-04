@@ -4,21 +4,27 @@ angular.module('startup', ['ui.router', 'templates', 'Devise'])
 '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
 
+  var auth = function ($q, $state, Auth) {
+    var defer = $q.defer();
+    Auth.currentUser().then(function(user) {
+      defer.resolve();
+    }, function(error) {
+      $state.go('login');
+    });
+    return defer.promise;
+  }
+
   $stateProvider
     .state('home', {
       url: '/home',
       templateUrl: 'home/_home.html',
-      controller: 'MainCtrl'
+      controller: 'MainCtrl',
+      resolve: { auth }
     })
     .state('login', {
       url: '/login',
       templateUrl: 'auth/_login.html',
-      controller: 'AuthCtrl',
-      onEnter: ['$state', 'Auth', function($state, Auth) {
-        Auth.currentUser().then(function (){
-          $state.go('home');
-        })
-      }]
+      controller: 'AuthCtrl'
     })
     .state('register', {
       url: '/register',
@@ -33,12 +39,14 @@ function($stateProvider, $urlRouterProvider) {
     .state('projects', {
       url: '/projects',
       templateUrl: 'projects/_index.html',
-      controller: 'ProjectsCtrl'
+      controller: 'ProjectsCtrl',
+      resolve: { auth }
     })
     .state('tasks', {
       url: '/projects/:projectId/tasks',
       templateUrl: 'tasks/_index.html',
-      controller: 'TasksCtrl'
+      controller: 'TasksCtrl',
+      resolve: { auth }
     });
 
   $urlRouterProvider.otherwise('home');
