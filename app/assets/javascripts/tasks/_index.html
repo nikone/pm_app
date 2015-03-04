@@ -1,3 +1,4 @@
+<div id="second-navigation" ng-include="'nav/_nav.html'"></div>
 <div id="second-main-wraper">
   <div id="second-main-left">
     <div id="main-left-header">
@@ -210,7 +211,7 @@
         <div class="left-list">
           <ul ng-repeat="task in board.tasks">
             <li ng-click="changeActiveTask(task.id)">
-              <input id="task-checked-13" class="task-completed-checkbox" type="checkbox" />
+              <input id="task-checked-13" class="task-checkbox" type="checkbox" />
               <label for="task-checked-13"></label>
               <span class="tasks-username"> {{ task.title }}</span>
               <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">

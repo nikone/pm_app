@@ -1,13 +1,31 @@
-<div class="page-header">
-  <h1>Log In</h1>
-</div>
+<div id="login-form-wraper">
+<div class="login-form">
+  <div class="login-form-header">
+    <h2>Sign In to your Account</h2>
+  </div>
 
-<form ng-submit="login()">
-  <div class="input-group">
-    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+  <div class="colored-box grey">
+    <form ng-submit="login()">
+      <div class="input-group">
+        <input class="form-control-login" type="email" class="form-control" placeholder="Email" ng-model="user.email">
+      </div>
+      <div class="input-group">
+        <input class="form-control-login" type="password" class="form-control" placeholder="Password" ng-model="user.password">
+      </div>
+      <label class="remember-me">
+        <span class="icon-holder">
+          <input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" class="checkbox-remember">
+          <label for="user_remember_me"></label>
+        </span>
+        <span class="remember-me-label">
+          Remember me
+        </span>
+      </label>
+      <input type="submit" class="btn btn-default sign-in-btn" value="Sign In"> 
+    </form>
   </div>
-  <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-  </div>
-  <input type="submit" class="btn btn-default" value="Log In">
-</form>
+</div>
+<div class="sign-up-msg">
+  Don't have an accoutn yet? <a href="#">Sign up</a>
+</div>
+</div>
