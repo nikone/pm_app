@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   respond_to :json
 
+  before_filter :authorize_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
@@ -12,6 +13,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def authorize_user!
+    # return 401 if user is not authorized and is trying to acces something other than root_path
+    return if user_signed_in? or root_path?
+    render json: { error: "You need to sign in or sign up before continuing." }, status: :unauthorized
+  end
+
+  def root_path?
+    params[:controller] == "application" and params[:action] == "index"
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
   end
