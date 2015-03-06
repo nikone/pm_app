@@ -228,6 +228,8 @@
     </div>
   </div>
 
-  <div id="second-main-right" ui-view></div>
+  <div id="second-main-right" ng-hide="taskAreaEmpty" ui-view></div>
+
+  <div id="second-main-right" ng-show="taskAreaEmpty" ng-include="'tasks/_show.html'"></div>
 
 </div>

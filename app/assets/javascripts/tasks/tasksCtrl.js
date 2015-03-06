@@ -6,21 +6,24 @@ angular.module('startup')
 'Board',
 'Task',
 function($scope, $stateParams, $state, Board, Task){
-  // Initial data when page is loaded, board and tasks
-  boardPromise = Board.get($stateParams.projectId);
   $scope.projectId = $stateParams.projectId;
 
-  boardPromise.then(function (boards) {
+  tasksPromise = Task.getAll($stateParams.projectId);
+  tasksPromise.then(function (boards) {
     $scope.boards = boards;
+
 
     taskPromise = Task.get(boards[0].tasks[0].id);
     taskPromise.then(function (task) {
-      $scope.activeTask = task;
+      $scope.taskAreaEmpty = true;
+      $scope.task = task;
     });
+
   });
 
   // Task data currently displayed
   $scope.changeActiveTask = function (task_id) {
+    $scope.taskAreaEmpty = false;
     $state.go('tasks.show', {taskId: task_id})
   };
 

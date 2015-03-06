@@ -4,7 +4,13 @@ angular.module('startup')
     angular.extend(this, data);
   }
 
-  Task.get = function(task_id) {
+  Task.getAll = function(project_id) {
+    return $http.get('/projects/' + project_id + '/tasks').then(function(response) {
+      return new Task(response.data);
+    });
+  };
+
+  Task.get = function (task_id) {
     return $http.get('/tasks/' + task_id).then(function(response) {
       return new Task(response.data);
     });

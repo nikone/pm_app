@@ -6,6 +6,7 @@ angular.module('startup')
 function($scope, $stateParams, Task){
   taskPromise = Task.get($stateParams.taskId);
   taskPromise.then(function (task) {
-    $scope.activeTask = task;
+    $scope.firstTask = false;
+    $scope.task = task;
   });
 }])
