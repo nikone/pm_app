@@ -2,11 +2,14 @@ angular.module('startup')
 .controller('TasksCtrl', [
 '$scope',
 '$stateParams',
+'$state',
 'Board',
 'Task',
-function($scope, $stateParams, Board, Task){
+function($scope, $stateParams, $state, Board, Task){
   // Initial data when page is loaded, board and tasks
   boardPromise = Board.get($stateParams.projectId);
+  $scope.projectId = $stateParams.projectId;
+
   boardPromise.then(function (boards) {
     $scope.boards = boards;
 
@@ -18,10 +21,7 @@ function($scope, $stateParams, Board, Task){
 
   // Task data currently displayed
   $scope.changeActiveTask = function (task_id) {
-    taskPromise = Task.get(task_id);
-    taskPromise.then(function (task) {
-      $scope.activeTask = task;
-    });
+    $state.go('tasks.show', {taskId: task_id})
   };
 
   // Create new task and append to board

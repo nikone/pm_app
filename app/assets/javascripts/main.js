@@ -47,7 +47,14 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: 'tasks/_index.html',
       controller: 'TasksCtrl',
       resolve: { auth: auth }
-    });
+    })
+    .state('tasks.show', {
+      url: '/:taskId',
+      templateUrl: 'tasks/_show.html',
+      controller: 'TaskCtrl',
+      resolve: { auth: auth }
+    })
+    ;
 
   $urlRouterProvider.otherwise('home');
 }])
