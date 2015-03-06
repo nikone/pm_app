@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     factory :project_with_boards do
       after(:create) do |project|
-        4.times { project.boards << create(:board_with_tasks) }
+        2.times { project.boards << create(:board_with_tasks) }
       end
     end
   end
