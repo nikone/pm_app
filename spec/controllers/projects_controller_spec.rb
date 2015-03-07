@@ -1,16 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  let(:user) { create(:user) }
+  let(:project) { create(:project) }
+
+  before(:each) do
+    sign_in user
+    user.projects << project
+  end
+
   describe 'GET #show' do
     before(:each) do
-      @project = create(:project)
-      get :show, id: @project.id, format: :json
+      get :show, id: project.id, format: :json
     end
 
     it 'has the project as embeded object' do
       project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:title]).to eq(@project.title)
-      expect(project_response[:id]).to eq(@project.id)
+      expect(project_response[:title]).to eq(project.title)
+      expect(project_response[:id]).to eq(project.id)
     end
 
     it 'returns a 200 http status' do
@@ -20,13 +27,13 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'GET #index' do
     before(:each) do
-      4.times { create(:project) }
+      user.projects << create(:project)
       get :index, format: :json
     end
 
     it 'returns a list of projects' do
       project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response.size).to eq(4)
+      expect(project_response.size).to eq(2)
     end
 
     it 'returns the project object into each product' do
@@ -82,13 +89,9 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'PUT/PATCH #update' do
-    before(:each) do
-      @project = create(:project)
-    end
-
     context "when is successfully updated" do
       before(:each) do
-        patch :update, { id: @project.id, project: { title: "An expensive project" } }
+        patch :update, { id: project.id, project: { title: "An expensive project" } }
       end
 
       it "renders the json representation for the updated user" do
@@ -103,7 +106,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     context "when is not updated" do
       before(:each) do
-        patch :update, { id: @project.id, project: { title: "" } }
+        patch :update, { id: project.id, project: { title: "" } }
       end
 
       it "renders an errors json" do
@@ -124,8 +127,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'DELETE #destroy' do
     before(:each) do
-      @project = create(:project)
-      delete :destroy, { id: @project.id }
+      delete :destroy, { id: project.id }
     end
 
     it 'returns a 204 HTTP status' do

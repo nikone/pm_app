@@ -1,14 +1,14 @@
 class ProjectsController < ApplicationController
-  def index
-    @projects = Project.all
-  end
+  before_filter :set_project, only: [:show, :update, :destroy]
 
-  def show
-    @project = Project.find(params[:id])
+  def index
+    @projects = current_user.projects
+    authorize @projects
   end
 
   def create
-    project = Project.new(project_params) 
+    project = Project.new(project_params)
+    authorize project
     if project.save
       render json: project, status: 201, location: [project] 
     else
@@ -16,23 +16,29 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def update
-    project = Project.find(params[:id])
-    if project.update(project_params)
-      render json: project, status: 200, location: [project] 
+    if @project.update(project_params)
+      render json: @project, status: 200, location: [@project] 
     else
-      render json: { errors: project.errors }, status: 422
+      render json: { errors: @project.errors }, status: 422
     end
   end
 
-  def destroy
-    project = Project.find(params[:id]) 
-    project.destroy
+  def destroy 
+    @project.destroy
     head 204
   end
 
   private
   def project_params
     params.require(:project).permit(:title, :description)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
+    authorize @project
   end
 end

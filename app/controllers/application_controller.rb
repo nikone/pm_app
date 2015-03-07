@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include Pundit
+  after_action :verify_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protect_from_forgery with: :exception
 
   respond_to :json
@@ -25,5 +29,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
+  end
+
+  def user_not_authorized
+    render json: { error: "You dont have permission" }, status: :unauthorized
   end
 end
