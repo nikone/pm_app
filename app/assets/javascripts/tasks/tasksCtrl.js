@@ -12,11 +12,13 @@ function($scope, $stateParams, $state, Board, Task){
   tasksPromise.then(function (boards) {
     $scope.boards = boards;
 
-    taskPromise = Task.get(boards[0].tasks[0].id);
-    taskPromise.then(function (task) {
-      $scope.taskAreaEmpty = true;
-      $scope.task = task;
-    });
+    if(boards.length) {
+      taskPromise = Task.get(boards[0].tasks[0].id);
+      taskPromise.then(function (task) {
+        $scope.taskAreaEmpty = true;
+        $scope.task = task;
+      });
+    }
 
   });
 
@@ -38,11 +40,12 @@ function($scope, $stateParams, $state, Board, Task){
     taskPromise = task.create($scope.projectId);
 
     taskPromise.then(function (task) {
-      $scope.newTask.title = "";
+      $scope.newTask = {};
       $scope.modalShown = false;
 
       // append the task to the board
       var index = Board.findIndexById($scope.boards, $scope.activeBoard.id);
+      console.log(index);
       $scope.boards[index].tasks.push({
         id: task.id,
         title: task.title 
@@ -50,11 +53,34 @@ function($scope, $stateParams, $state, Board, Task){
     });
   };
 
+  $scope.newBoard = {};
+  $scope.addBoard = function () {
+    var board = new Board();
+    board.title = $scope.newBoard.title;
+    boardPromise = board.create($scope.projectId);
+
+    boardPromise.then(function (board) {
+      $scope.modalNewBoardShown = false;
+      $scope.newBoard = {};
+
+      $scope.boards = Board.insertBoardToList($scope.boards, {
+        id: board.id,
+        title: board.title,
+        tasks: []
+      });
+    });
+  }
+
   // Show new task modal logic
   $scope.modalShown = false;
   $scope.activeBoard = {};
   $scope.toggleNewTaskModal = function(board_id) {
     $scope.activeBoard.id = board_id;
     $scope.modalShown = !$scope.modalShown;
+  };
+
+  $scope.modalNewBoardShown = false;
+  $scope.toggleNewBoardModal = function() {
+    $scope.modalNewBoardShown = !$scope.modalNewBoardShown;
   };
 }])

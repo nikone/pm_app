@@ -30,7 +30,6 @@ function($scope, $state, Project){
     projectPromise = project.create();
 
     projectPromise.then(function (project) {
-      console.log(project);
       //after the project is create it is added to users project list
 
       // close modal and reset input
@@ -43,7 +42,6 @@ function($scope, $state, Project){
         id: project.id,
         title: project.title 
       };
-      console.log($scope.projects);
     });
   }
 

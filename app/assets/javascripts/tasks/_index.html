@@ -34,8 +34,26 @@
     </div>
     <!-- New Task Modal End -->
 
+    <!-- New Task Modal -->
+    <div>
+      <modal-dialog show='modalNewBoardShown' width='500px' height='60%'>
+        <div class="ng-modal-header">
+          <h4>CREATE NEW BOARD</h4>
+        </div>
+        <form ng-submit="addBoard()" id="new-task-form">
+          <input type="text" ng-model="newBoard.title" placeholder="Title"></input>
+          <div class='ng-modal-close-task' ng-click='toggleNewBoardModal()'>Close</div>
+          <button type="submit">Create</button>
+        </form>
+      </modal-dialog>
+    </div>
+    <!-- New Task Modal End -->
+
 
       <!-- In progress pad -->
+      <div>
+        <h3 ng-click="toggleNewBoardModal()">Create new board</h3>
+      </div>
       <div ng-repeat="board in boards">
         <div class="left-list-header">
           <div class="header-icons">

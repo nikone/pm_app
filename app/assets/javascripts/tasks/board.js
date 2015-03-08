@@ -13,5 +13,19 @@ angular.module('startup')
     };
   };
 
+  Board.insertBoardToList = function(board_list, board) {
+    var arrLength = Object.keys(board_list).length;
+    board_list[arrLength] = board;
+    return board_list;
+  };
+
+  Board.prototype.create = function(project_id) {
+    var board = this;
+    return $http.post('/projects/' + project_id + '/boards', board).then(function(response) {
+      board.id = response.data.id;
+      return board;
+    });
+  }
+
   return Board;
 }]);
