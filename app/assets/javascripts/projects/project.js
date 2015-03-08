@@ -10,5 +10,19 @@ angular.module('startup')
     });
   };
 
+  Project.get = function (project_id) {
+    return $http.get('/projects/' + project_id).then(function(response) {
+      return new Project(response.data);
+    });
+  };
+
+  Project.prototype.create = function() {
+    var project = this;
+    return $http.post('/projects', project).then(function(response) {
+      project.id = response.data.id;
+      return project;
+    });
+  }
+
   return Project;
 }]);

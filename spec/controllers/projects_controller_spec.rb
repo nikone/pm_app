@@ -57,6 +57,10 @@ RSpec.describe ProjectsController, type: :controller do
         expect(response_body[:title]).to eq(@project_attributes[:title])
       end
 
+      it 'is added to users project list' do
+        expect(user.projects).to include(Project.find(response_body[:id]))
+      end
+
       it 'returns a 201 HTTP status' do
         expect(response.status).to eq(201)
       end

@@ -42,6 +42,12 @@ function($stateProvider, $urlRouterProvider) {
       controller: 'ProjectsCtrl',
       resolve: { auth: auth }
     })
+    .state('projects.show', {
+      url: '/:projectId',
+      templateUrl: 'projects/_show.html',
+      controller: 'ProjectCtrl',
+      resolve: { auth: auth }  
+    })
     .state('tasks', {
       url: '/projects/:projectId/tasks',
       templateUrl: 'tasks/_index.html',

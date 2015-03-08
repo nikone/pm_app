@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     project = Project.new(project_params)
     authorize project
     if project.save
+      current_user.projects << project
       render json: project, status: 201, location: [project] 
     else
       render json: { errors: project.errors }, status: 422

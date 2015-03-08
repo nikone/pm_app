@@ -1,4 +1,34 @@
 <div id="second-navigation" ng-include="'nav/_nav.html'"></div>
-<div ng-repeat="project in projects">
-  <a ng-href="#/projects/{{project.id}}/tasks">{{ project.title }}</a>
+
+
+<div id="second-main-wraper">
+  <div id="second-main-left">
+
+    <!-- New Project Modal -->
+    <div>
+      <modal-dialog show='newModalShown' width='500px' height='60%'>
+        <div class="ng-modal-header">
+          <h4>CREATE NEW PROJECT</h4>
+        </div>
+        <form ng-submit="createProject()" id="new-task-form">
+          <input type="text" ng-model="newProject.title" placeholder="Title"></input>
+          <textarea ng-model="newProject.description" placeholder="Description"></textarea>
+          <div class='ng-modal-close-task' ng-click='toggleNewProjectModal()'>Close</div>
+          <button type="submit">Create</button>
+        </form>
+      </modal-dialog>
+    </div>
+    <!-- New Project Modal End -->
+
+
+    <div ng-repeat="project in projects">
+      <h3 ng-click="changeActiveProject(project.id)">{{ project.title }}</h3>
+    </div>
+    <p ng-click="toggleNewProjectModal()">Create new project</p>
+  </div>  
+
+  <div id="second-main-right" ng-hide="projectAreaEmpty" ui-view></div>
+  <div id="second-main-right" ng-show="projectAreaEmpty" ng-include="'projects/_show.html'"></div>
 </div>
+
+

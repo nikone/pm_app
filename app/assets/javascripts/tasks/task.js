@@ -16,9 +16,9 @@ angular.module('startup')
     });
   };
 
-  Task.prototype.create = function() {
+  Task.prototype.create = function(project_id) {
     var task = this;
-    return $http.post('/tasks', task).then(function(response) {
+    return $http.post('/projects/' + project_id + '/tasks', task).then(function(response) {
       task.id = response.data.id;
       return task;
     });
