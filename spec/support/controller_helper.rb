@@ -8,6 +8,10 @@ module ControllerHelpers
       allow(controller).to receive(:current_user).and_return(user)
     end
   end
+
+  def response_body
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end
 
 RSpec.configure do |config|

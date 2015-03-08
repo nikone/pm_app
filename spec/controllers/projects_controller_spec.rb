@@ -15,9 +15,8 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it 'has the project as embeded object' do
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response[:title]).to eq(project.title)
-      expect(project_response[:id]).to eq(project.id)
+      expect(response_body[:title]).to eq(project.title)
+      expect(response_body[:id]).to eq(project.id)
     end
 
     it 'returns a 200 http status' do
@@ -32,13 +31,11 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it 'returns a list of projects' do
-      project_response = JSON.parse(response.body, symbolize_names: true)
-      expect(project_response.size).to eq(2)
+      expect(response_body.size).to eq(2)
     end
 
     it 'returns the project object into each product' do
-      projects_response = JSON.parse(response.body, symbolize_names: true)
-      projects_response.each do |project_response|
+      response_body.each do |project_response|
         expect(project_response[:title]).to be_present
         expect(project_response[:description]).to be_present
       end
@@ -57,8 +54,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'renders the json representation for the project record just created' do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:title]).to eq(@project_attributes[:title])
+        expect(response_body[:title]).to eq(@project_attributes[:title])
       end
 
       it 'returns a 201 HTTP status' do
@@ -73,13 +69,11 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'renders an errors json' do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response).to have_key(:errors)
+        expect(response_body).to have_key(:errors)
       end
 
       it 'renders the json errors on why the project could not be created' do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:errors][:title]).to include "can't be blank"
+        expect(response_body[:errors][:title]).to include "can't be blank"
       end
 
       it 'returns a 422 HTTP status' do
@@ -95,8 +89,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "renders the json representation for the updated user" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:title]).to eql "An expensive project"
+        expect(response_body[:title]).to eql "An expensive project"
       end
 
       it 'returns a 200 HTTP status' do
@@ -110,13 +103,11 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "renders an errors json" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response).to have_key(:errors)
+        expect(response_body).to have_key(:errors)
       end
 
       it "renders the json errors on whye the user could not be created" do
-        project_response = JSON.parse(response.body, symbolize_names: true)
-        expect(project_response[:errors][:title]).to include "can't be blank"
+        expect(response_body[:errors][:title]).to include "can't be blank"
       end
 
       it 'returns a 422 HTTP status' do

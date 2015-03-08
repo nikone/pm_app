@@ -3,9 +3,15 @@ FactoryGirl.define do
     title { Faker::Lorem.words(3).join(" ") }
     description { Faker::Lorem.sentences(4).join(" ") }
 
-    factory :project_with_boards do
+    factory :project_with_board do
       after(:create) do |project|
-        2.times { project.boards << create(:board_with_tasks) }
+        project.boards << create(:board)
+      end
+    end
+
+    factory :project_with_tasks do
+      after(:create) do |project|
+        project.boards << create(:board_with_task)
       end
     end
   end
