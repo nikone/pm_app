@@ -17,6 +17,7 @@ User.create(username: "employee4", password: "adminadmin", password_confirmation
 Company.create(name: "Corp")
 
 Project.create(title: "Zerply", company_id: 1)
+User.first.projects << Project.first
 
 Board.create(title: "Backlog", project_id: 1)
 Board.create(title: "Ready", project_id: 1)

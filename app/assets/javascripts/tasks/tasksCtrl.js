@@ -45,7 +45,6 @@ function($scope, $stateParams, $state, Board, Task){
 
       // append the task to the board
       var index = Board.findIndexById($scope.boards, $scope.activeBoard.id);
-      console.log(index);
       $scope.boards[index].tasks.push({
         id: task.id,
         title: task.title 
