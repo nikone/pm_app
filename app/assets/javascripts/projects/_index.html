@@ -21,9 +21,15 @@
     <!-- New Project Modal End -->
 
 
-    <div ng-repeat="project in projects">
-      <h3 ng-click="changeActiveProject(project.id)">{{ project.title }}</h3>
-    </div>
+    <ul>
+      <li ng-repeat="project in projects" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+        <h3 ng-click="changeActiveProject(project.id)">{{ project.title }}
+        <span class="see-tasks-link" ng-show="hoverTaskLink">
+            <a ng-href="#/projects/{{project.id}}/tasks">See Tasks</a>
+        </span>
+        </h3>
+      </li>
+    </ul>
     <p ng-click="toggleNewProjectModal()">Create new project</p>
   </div>  
 

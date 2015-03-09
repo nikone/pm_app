@@ -48,5 +48,13 @@ function($scope, $state, Project){
   $scope.newModalShown = false;
   $scope.toggleNewProjectModal = function () {
     $scope.newModalShown = !$scope.newModalShown;
-  }
+  };
+
+  $scope.hoverIn = function(){
+    this.hoverTaskLink = true;
+  };
+
+  $scope.hoverOut = function(){
+    this.hoverTaskLink = false;
+  };
 }])
