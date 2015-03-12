@@ -82,4 +82,8 @@ function($scope, $stateParams, $state, Board, Task){
   $scope.toggleNewBoardModal = function() {
     $scope.modalNewBoardShown = !$scope.modalNewBoardShown;
   };
+
+  $scope.toggleHideTasks = function() {
+    this.hideTasks = !this.hideTasks;
+  };
 }])
