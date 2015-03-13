@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20150303102818) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",       limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "completed",   limit: 1,     default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "creator_id",  limit: 4
     t.integer  "board_id",    limit: 4
     t.integer  "assignee_id", limit: 4
