@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     project = Project.find(params[:project_id])
     user_not_authorized unless current_user.added_to_project?(project)
 
-    @boards = project.boards.includes(:tasks => :tags)
+    @boards = project.boards.includes(:active_tasks => :tags)
   end
 
   def create
@@ -23,6 +23,11 @@ class TasksController < ApplicationController
   end
 
   def update
+    if @task.update(task_params)
+      render json: @task, status: 200, location: [@task] 
+    else
+      render json: { errors: @task.errors }, status: 422
+    end
   end
 
   def destroy
@@ -30,7 +35,8 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :description, :board_id, :creator_id, :assignee_id)
+    params.require(:task).permit(:title, :description, :board_id, :creator_id, 
+      :assignee_id, :completed)
   end
 
   def set_task

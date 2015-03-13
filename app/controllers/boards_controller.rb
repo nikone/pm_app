@@ -14,6 +14,12 @@ class BoardsController < ApplicationController
     end
   end
 
+  def completed_tasks
+    board = Board.find(params[:id])
+    authorize board
+    @tasks = board.completed_tasks.includes(:tags)
+  end
+
   private
   def board_params
     params.require(:board).permit(:title)

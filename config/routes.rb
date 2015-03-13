@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :show, :create, :update, :destroy], shallow: true, defaults: { format: :json }
     resources :boards, only: [:create], shallow: true, defaults: { format: :json }
   end
+
+  get '/boards/:id/completed_tasks', to: 'boards#completed_tasks', as: :board_completed_tasks, defaults: { format: :json }
 end
