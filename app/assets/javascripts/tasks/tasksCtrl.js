@@ -3,9 +3,10 @@ angular.module('startup')
 '$scope',
 '$stateParams',
 '$state',
+'$timeout',
 'Board',
 'Task',
-function($scope, $stateParams, $state, Board, Task){
+function($scope, $stateParams, $state, $timeout, Board, Task){
   $scope.projectId = $stateParams.projectId;
 
   tasksPromise = Task.getAll($stateParams.projectId);
@@ -37,6 +38,7 @@ function($scope, $stateParams, $state, Board, Task){
     task.creator_id = 1;
     task.assignee_id = 1;
     task.board_id = $scope.activeBoard.id;
+    task.completed = false;
     taskPromise = task.create($scope.projectId);
 
     taskPromise.then(function (task) {
@@ -47,7 +49,8 @@ function($scope, $stateParams, $state, Board, Task){
       var index = Board.findIndexById($scope.boards, $scope.activeBoard.id);
       $scope.boards[index].tasks.push({
         id: task.id,
-        title: task.title 
+        title: task.title,
+        completed: false
       });
     });
   };
@@ -65,7 +68,8 @@ function($scope, $stateParams, $state, Board, Task){
       $scope.boards = Board.insertBoardToList($scope.boards, {
         id: board.id,
         title: board.title,
-        tasks: []
+        tasks: [],
+        completed_tasks: 0
       });
     });
   }
@@ -86,4 +90,51 @@ function($scope, $stateParams, $state, Board, Task){
   $scope.toggleHideTasks = function() {
     this.hideTasks = !this.hideTasks;
   };
+
+  $scope.toggleCompletedTasks = function(board_id) {
+    index = Board.findIndexById($scope.boards, board_id);
+    $scope.boards[index].showCompletedTasks = !$scope.boards[index].showCompletedTasks;
+    if ($scope.boards[index].showCompletedTasks) {
+      boardPromise = Board.getCompletedTasks(board_id);
+      boardPromise.then(function (tasks) {
+        for (i = 0; i < Object.keys(tasks).length; i++) {
+          $scope.boards[index].tasks.push({
+            id: tasks[i].id,
+            title: tasks[i].title,
+            completed: tasks[i].completed
+          });
+        }
+      });
+    } else {
+      $scope.boards[index].tasks = _.filter($scope.boards[index].tasks, function(task){ 
+        return task.completed == false; 
+      });
+    }
+  };
+
+  $scope.toggleCompleted = function (task, board) {
+    task.completed = !task.completed;
+
+    var task_model = new Task(task);
+    task_model.completed = task.completed;
+    task_model.update()
+
+    if (task.completed == true) {
+      board.completed_tasks += 1;
+    } else {
+      board.completed_tasks -= 1;
+    }
+
+    if (board.showCompletedTasks) {
+      $timeout(function(){
+        board.tasks = _.sortBy(board.tasks, 'completed');
+      }, 1500);
+    } else {
+      $timeout(function(){
+        board.tasks = _.filter(board.tasks, function(task){ 
+          return task.completed == false; 
+        });
+      }, 1500);
+    }
+  }
 }])

@@ -51,16 +51,23 @@
 
 
       <!-- In progress pad -->
-      <div>
-        <h3 ng-click="toggleNewBoardModal()">Create new board</h3>
-      </div>
       <div ng-repeat="board in boards">
         <div class="left-list-header">
           <div class="header-icons">
             <div class="list-name" ng-click="toggleHideTasks()">{{board.title}} <i ng-class="hideTasks ? 'fa fa-angle-down' : 'fa fa-angle-up'"></i></div>
           </div>
-          <div class="header-nav">
-            <span class="new-task">View All (12)</span>
+          <div class="header-nav" ng-click="toggleCompletedTasks(board.id)">
+            <div ng-if="board.completed_tasks != 0">
+              <span ng-hide="board.showCompletedTasks" class="new-task">
+                Show Completed ({{ board.completed_tasks }})
+              </span>
+              <span ng-show="board.showCompletedTasks" class="new-task">
+                Hide Completed ({{ board.completed_tasks }})
+              </span>
+            </div>
+            <div ng-if="board.completed_tasks == 0">
+              No completed tasks
+            </div>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -68,9 +75,9 @@
         <div class="left-list" ng-hide="hideTasks">
           <ul ng-repeat="task in board.tasks">
             <li ng-click="changeActiveTask(task.id)">
-              <input id="task-checked-13" class="task-checkbox" type="checkbox" />
-              <label for="task-checked-13"></label>
-              <span class="tasks-username"> {{ task.title }}</span>
+              <input id="task-checked-{{ task.id }}" class="task-checkbox" ng-checked="task.completed" type="checkbox" ng-click="toggleCompleted(task, board)"/>
+              <label for="task-checked-{{ task.id }}"></label>
+              <span ng-class="task.completed ? 'completed' : ''" class="tasks-username"> {{ task.title }}</span>
               <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">
               <span class="task-notificaton">3</span>
               <span class="task-due-date">29 Nov</span>
@@ -80,6 +87,9 @@
         <div id="create-new-task" ng-click='toggleNewTaskModal(board.id)' ng-hide="hideTasks">
           <i class="fa fa-plus-square"></i><span class="add-text">Add New</span>
         </div>
+      </div>
+      <div>
+        <h3 ng-click="toggleNewBoardModal()">Create new board</h3>
       </div>
       <!-- In progress pad end -->
     </div>

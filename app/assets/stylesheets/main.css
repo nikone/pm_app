@@ -395,6 +395,11 @@ ul {
   margin-left: 10px;
 }
 
+.left-list ul li .completed {
+  /*color: #CAC8C9;*/
+  text-decoration: line-through;
+}
+
 .left-list ul li:hover {
   
   background-color: #F4F4F4;
@@ -474,7 +479,8 @@ ul {
   content: "\f096"; }
 .task-checkbox + label:before { letter-spacing: 10px; }
 
-.task-checkbox:checked + label:before { content: "\f046"; }
+/*.task-checkbox:checked + label:before { content: "\f046"; color: #CAC8C9; }*/
+.task-checkbox:checked + label:before { content: "\f14a"; color: #84BD39; }
 .task-checkbox:checked + label:before { letter-spacing: 5px; }
 
 

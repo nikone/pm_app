@@ -19,6 +19,12 @@ angular.module('startup')
     return board_list;
   };
 
+  Board.getCompletedTasks = function(board_id) {
+    return $http.get('/boards/' + board_id + '/completed_tasks').then(function(response) {
+      return new Board(response.data);
+    });
+  };
+
   Board.prototype.create = function(project_id) {
     var board = this;
     return $http.post('/projects/' + project_id + '/boards', board).then(function(response) {
