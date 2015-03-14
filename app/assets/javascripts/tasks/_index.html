@@ -6,17 +6,33 @@
       <span class="main-project-title">Zerply</span>
       <div class="project-navigation">
         <div class="all-project-icon">
+          <i class="fa fa-filter"></i>
+          <span>Filter tasks</span>
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <div class="all-project-icon" ng-click="toggleProjectsList()">
           <i class="fa fa-briefcase"></i>
           <span>All projects</span>
           <i class="fa fa-caret-down"></i>
         </div>
-        <div class="project-left-right">
-          <i class="fa fa-chevron-left"></i>
-          <i class="fa fa-chevron-right"></i>
-        </div>
       </div>
     </div>
     <div id="main-left-list">
+
+    <!-- All projects popup -->
+    <div>
+      <popover show='popoverProjectsShown' width='300px' height='250px' top='190px' left='920px'>
+        <div class="ng-popover-header">
+          <span>List of all projects</span>
+          <i class="fa fa-times" ng-click="toggleProjectsList()"></i>
+        </div>
+        <div class="ng-popover-project" ng-repeat="project in projectList" ng-click="openProject(project.id)">
+          <img ng-src="/assets/vimeo.png" style="width:30px">
+          <span class="project-title">{{ project.title }}</span>
+        </div>
+      </popover>
+    </div>
+    <!-- All projects popup end -->
 
     <!-- New Task Modal -->
     <div>

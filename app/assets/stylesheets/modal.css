@@ -40,3 +40,24 @@
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+
+.ng-modal-close-task {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+
+.ng-modal-header {
+  padding: 10px;
+  text-align: center;
+  background-color: #d25428;
+  color: white;
+  margin 20px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+}

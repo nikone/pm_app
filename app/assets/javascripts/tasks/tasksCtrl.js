@@ -6,7 +6,8 @@ angular.module('startup')
 '$timeout',
 'Board',
 'Task',
-function($scope, $stateParams, $state, $timeout, Board, Task){
+'Project',
+function($scope, $stateParams, $state, $timeout, Board, Task, Project){
   $scope.projectId = $stateParams.projectId;
 
   tasksPromise = Task.getAll($stateParams.projectId);
@@ -28,6 +29,10 @@ function($scope, $stateParams, $state, $timeout, Board, Task){
     $scope.taskAreaEmpty = false;
     $state.go('tasks.show', {taskId: task_id})
   };
+
+  $scope.openProject = function (project_id) {
+    $state.go('tasks', {projectId: project_id})
+  }
 
   // Create new task and append to board
   $scope.newTask = {};
@@ -90,6 +95,18 @@ function($scope, $stateParams, $state, $timeout, Board, Task){
   $scope.toggleHideTasks = function() {
     this.hideTasks = !this.hideTasks;
   };
+
+  $scope.popoverProjectsShown = false;
+  $scope.projectList = {};
+  $scope.toggleProjectsList = function() {
+    if (_.size($scope.projectList) == 0) {
+      var projectsPromise = Project.getAll();
+      projectsPromise.then(function (projects) {
+        $scope.projectList = projects;
+      });
+    }
+    $scope.popoverProjectsShown = !$scope.popoverProjectsShown;
+  }
 
   $scope.toggleCompletedTasks = function(board_id) {
     index = Board.findIndexById($scope.boards, board_id);

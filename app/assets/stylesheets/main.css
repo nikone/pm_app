@@ -293,6 +293,7 @@ ul {
   margin-right: 5px;
 }
 
+/* not needed i removed the arrows in top menu
 .project-left-right {
   float: right;
   margin-top: 23px;
@@ -313,6 +314,7 @@ ul {
   border-bottom-right-radius: 5px;
   margin-left: -4px;
 }
+*/
 
 .search-tasks {
   margin-top: 3px;
@@ -568,26 +570,6 @@ ul {
   font-size: 13px;
 }
 
-.ng-modal-close-task {
-  padding: 5px;
-  cursor: pointer;
-  font-size: 120%;
-  display: inline-block;
-  font-weight: bold;
-  font-family: 'arial', 'sans-serif';
-}
-
-.ng-modal-header {
-  padding: 10px;
-  text-align: center;
-  background-color: #d25428;
-  color: white;
-  margin 20px;
-  -webkit-border-radius: 10px 10px 0px 0px;
-  -moz-border-radius: 10px 10px 0px 0px;
-  border-radius: 10px 10px 0px 0px;
-}
-
 #login-form-wraper {
   top: 15%;
   margin-left: auto;
@@ -731,3 +713,24 @@ body {
   font-weight: normal;
   padding-left: 30px;
 }
+
+/* all projects popup */
+#all-projects {
+  z-index:10000;
+  position: absolute;
+  width: 300px;
+  height: 210px;
+  top: 170px;
+  left: 911px;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px 5px;
+  border-radius: 5px 5px;
+
+  background-color: #fff;
+  box-shadow: 0px 0px 5px #888;;
+}
+/* all projects popup end */
