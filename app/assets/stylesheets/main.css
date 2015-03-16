@@ -147,7 +147,7 @@ ul {
 
 #first_logo_helper {
   width: 33px;
-  height: 70px;
+  height: 50px;
   background-color: #d25428;
   float: left;
 }
@@ -163,11 +163,16 @@ ul {
   background-color: #d25428;
   float: left;
   font-size: 20px;
-  height: 70px;
+  height: 58px;
   text-align: center;
-  width: 185px;
+  width: 220px;
 }
 
+#logo p {
+  width: 100%;
+  margin: 0px;
+  margin-top: 10px;
+}
 
 
 #rooms {
@@ -244,13 +249,12 @@ ul {
 #main-left-list::-webkit-scrollbar
 {
   width: 5px;
-  
+  background-color: #f0f0f0;
 }
 
 #main-left-list::-webkit-scrollbar-thumb
 {
   border-radius: 10px;
-
   background-color: #d25428;
 }
 
