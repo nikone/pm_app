@@ -23,4 +23,5 @@ function($scope, $location, Auth){
     $scope.user = {};
     $location.path('/login');
   });
+
 }]);

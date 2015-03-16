@@ -2,6 +2,11 @@ ul {
   list-style: none;
 }
 
+#rooms ul {
+  margin: 0px;
+  padding: 0px;
+}
+
 #rooms ul li {
   padding-right: 10px;
   color: #cac8c9;
@@ -73,6 +78,7 @@ ul {
   height: 1px;
   background-color: #D6D6D6;
   margin-bottom: 0px;
+  margin-left: 0px;
 }
 
 .cyan {
@@ -109,7 +115,8 @@ ul {
 
 #second-navigation {
   float: left;
-  width: 250px;
+  /*width: 250px;*/
+  width: 220px;
   background-color: grey;
   height: 100%;
 }
@@ -124,13 +131,15 @@ ul {
   background-color: white;
   height: 100%;
   float: left;
-  width: calc((100% - 250px)/2);
+  /*width: calc((100% - 220px)/2);*/
+  width: calc(100% - 712px);
 }
 
 #second-main-right {
   float: left;
   background-color: white;
-  width: calc((100% - 250px)/2);
+  /*width: calc((100% - 220px)/2);*/
+  width: 492px;
   height: 100%;
 }
 
@@ -165,17 +174,17 @@ ul {
     height: calc(100% - 70px);
     background-color: #1b2224;
     font-color: #535f63;
-    width: 250px;
+    width: 220px;
 }
 
 #rooms ul li {
-  padding-right: 10px;
+  padding: 5px 10px;
   color: #cac8c9;
-  margin-left: -10px;
 }
 
 #rooms ul li:hover {
   color: #ffffff;
+  background-color: #313541;
   cursor: pointer; 
   cursor: hand;
 }
@@ -183,11 +192,18 @@ ul {
 #rooms ul li a {
   text-decoration: none;
   color: #cac8c9;
+  width: 220px;
+  display: block;
+  outline: 0;
 }
 
 #rooms ul li a:hover {
   text-decoration: none;
   color: #ffffff;
+}
+
+#rooms ul li i {
+  width: 16px;
 }
 
 .room-name {
@@ -198,15 +214,15 @@ ul {
 .unread-messages-orange {
   color: #fff;
   background-color: #d25428;
-  padding: 3px 6px;
+  /*padding: 3px 6px;*/
   -moz-border-radius: 26px 26px;
   border-radius: 5px 5px;
   text-align: center;
   -webkit-border-radius: 5px 5px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   float: right;
-  margin-bottom: 5px;
+  margin-top: 5px;
   margin-right: 20px;
 }
 
@@ -255,12 +271,17 @@ ul {
 }
 
 .left-list-header {
-  margin-top: 30px;
-  height: 30px;}
+  padding-top: 15px;
+  /*
+  border-top: 5px solid #d25428;
+  border-radius: 5px;
+  */
+
+}
 
 .left-list-header .header-icons {
   float: left;
-  margin-left: 30px;
+  margin-left: 25px;
 }
 
 .left-list-header .header-nav {
@@ -364,10 +385,9 @@ ul {
 
 .list-name {
   font-size: 20px;
-  margin-left: 10px;
   float: left;
-  font-weight: bold;
   cursor: pointer;
+  color: #d25428;
 }
 .list-name i {
   margin-left: 5px;
@@ -385,9 +405,15 @@ ul {
 
 .left-list ul li {
   border-bottom: 1px solid #d6d6d6;
-  height: 50px;
-  padding: 15px 30px;
+  height: 40px;
+  padding: 10px 30px;
+  font-size: 15px;
 }
+
+.left-list ul li label {
+  font-size: 17px;
+  margin-top: 0px;
+};
 
 .left-list ul li .tag {
   font-size: 14px;
@@ -421,17 +447,18 @@ ul {
 .task-notificaton {
   color: #fff;
   background-color: #d25428;
-  padding: 3px 6px;
+  padding: 2px 6px;
   -moz-border-radius: 5px 5px;
   border-radius: 5px 5px;
   text-align: center;
   -webkit-border-radius: 5px 5px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   float: right;
+  font-size: 15px;
   margin-bottom: 5px;
   margin-right: 10px;
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 .task-no-notificaton {
@@ -454,7 +481,7 @@ ul {
   float: right;
   margin-right: 15px;
   margin-top: -2px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 
@@ -541,13 +568,14 @@ ul {
 }
 
 #create-new-task {
-  padding: 15px 0;
-  text-align: center;
+  padding: 9px 0px 9px 30px;
+  text-align: left;
   /*border-bottom: 1px solid #d6d6d6;*/
+  border-radius: 0px 0px 10px 10px;
 }
 
 #create-new-task .add-text {
-  padding-left: 10px;
+  padding-left: 15px;
 }
 
 #create-new-task:hover {
@@ -734,3 +762,11 @@ body {
   box-shadow: 0px 0px 5px #888;;
 }
 /* all projects popup end */
+
+/* Task board list */
+.task-board {
+  margin: 10px 15px;
+  /*box-shadow: 0px 0px 5px #888888;*/
+  /*border-radius: 10px;*/
+}
+/* Task board list end*/

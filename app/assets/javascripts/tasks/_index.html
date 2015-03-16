@@ -67,7 +67,7 @@
 
 
       <!-- In progress pad -->
-      <div ng-repeat="board in boards">
+      <div class="task-board" ng-repeat="board in boards">
         <div class="left-list-header">
           <div class="header-icons">
             <div class="list-name" ng-click="toggleHideTasks()">{{board.title}} <i ng-class="hideTasks ? 'fa fa-angle-down' : 'fa fa-angle-up'"></i></div>
@@ -94,7 +94,7 @@
               <input id="task-checked-{{ task.id }}" class="task-checkbox" ng-checked="task.completed" type="checkbox" ng-click="toggleCompleted(task, board)"/>
               <label for="task-checked-{{ task.id }}"></label>
               <span ng-class="task.completed ? 'completed' : ''" class="tasks-username"> {{ task.title }}</span>
-              <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px">
+              <!-- <img ng-src="/assets/users/user-{{ task.assignee_id - 1 }}.jpg" style="width:30px"> -->
               <span class="task-notificaton">3</span>
               <span class="task-due-date">29 Nov</span>
             </li>
