@@ -267,23 +267,45 @@ ul {
   margin-right: 10px;
 }
 
-#main-left-header i {
-  color: #cac8c9;
-  font-size: 20px;
-  margin-top: 20px;
-  margin-left: 25px;
-}
-
-#main-left-header input {
-  padding: 10px;
-  margin-left: 5px;
+.header-commands {
+  float: right;
+  margin-right: 30px;
+  margin-top: 13px;
+  color: #333;
   font-size: 15px;
-  width: 500px;
-  border: none;
+  display: inline-block;
 }
 
-#main-left-header input:focus {
-  outline: none;
+.header-commands .group-command {
+  margin-right: 5px;
+  padding: 5px 10px;
+  float:right;
+}
+
+.header-commands .group-command:hover {
+  background-color: #F4F4F4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header-commands .group-command i{
+  margin-left: 5px;
+}
+
+.header-commands .filter-command {
+  margin-right: 15px;
+  padding: 5px 10px;
+  float: left;
+}
+
+.header-commands .filter-command:hover {
+  background-color: #F4F4F4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header-commands .filter-command i{
+  margin-right: 5px;
 }
 
 #main-left-list {
@@ -335,9 +357,18 @@ ul {
 
 }
 
-.filters {
-
+.project-breadcrumps {
+  float: left;
+  margin-top: 13px;
+  margin-left: 25px;
+  font-size: 20px;
+  color: #333;
 }
+
+.project-breadcrumps i {
+  margin: 0px 5px;
+}
+
 
 .left-list-header .header-icons {
   float: left;
@@ -464,10 +495,11 @@ ul {
 }
 
 .left-list ul li {
-  border-bottom: 1px solid #d6d6d6;
+  /*border-bottom: 1px solid #d6d6d6;*/
   height: 40px;
   padding: 10px 30px;
   font-size: 15px;
+  color: #333;
 }
 
 .left-list ul li label {
@@ -632,6 +664,7 @@ ul {
   text-align: left;
   /*border-bottom: 1px solid #d6d6d6;*/
   border-radius: 0px 0px 10px 10px;
+  color: #333;
 }
 
 #create-new-task .add-text {
